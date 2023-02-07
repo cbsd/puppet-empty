@@ -1,0 +1,5 @@
+classes:
+  - dynmotd
+  - timezone
+  - loginconf
+  - mailalias

@@ -1,0 +1,25 @@
+---
+stages:
+  - test
+  - build
+
+jobTest:
+  stage: test
+  only:
+    variables:
+    - $CI_COMMIT_REF_NAME == "main"
+  tags:
+    - cbsdpuppet
+  script:
+      - /usr/local/etc/puppet/scripts/cbsd-puppet-test $( pwd )
+
+jobBuild:
+  stage: build
+  only:
+    variables:
+    - $CI_COMMIT_REF_NAME == "main"
+  tags:
+    - cbsdpuppet
+  script:
+  - /usr/local/etc/puppet/scripts/cbsd-puppet-deploy $( pwd )
+  when: on_success
